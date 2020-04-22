@@ -1,0 +1,22 @@
+{
+  "name": "day6_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IDU-SW/202012707KDY.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IDU-SW/202012707KDY/issues"
+  },
+  "homepage": "https://github.com/IDU-SW/202012707KDY#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
