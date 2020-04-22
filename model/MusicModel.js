@@ -50,7 +50,7 @@ class Music {
             let newMusic = {id, title, artist, genre, date};
             for (var music of this.musics ) {
                 if ( music.id == id ) {
-                    this.musics.splice(id, 1, newMusic);
+                    this.musics.splice(id, 1, newMusic); // id번의 내용 1개 삭제 후 newMusic의 내용 새로 추가
                     resolve(newMusic);
                     return;
                 }

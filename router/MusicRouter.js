@@ -68,7 +68,7 @@ async function delMusic(req, res) {
 }
 
 // 수정
-async function editMusic(req, res) { // 삭제 후 다시 추가
+async function editMusic(req, res) {
     try {
         const musicId = req.params.musicId; // id 가져오기
         console.log('수정할 음악 번호', musicId); // console에 id찍어주기
@@ -84,7 +84,7 @@ async function editMusic(req, res) { // 삭제 후 다시 추가
         const genre = req.body.genre;
         const date = req.body.date;
         const result = await musics.editMusic(musicId, title, artist, genre, date);
-        res.send({msg:'SUCCESS, '+musicId+'번의 내용이 변경되었습니다.', data:result});
+        res.send({msg:'SUCCESS, ' + musicId + '번의 내용이 변경되었습니다.', data:result});
     }
     catch ( error ) {
         res.status(400).send({error:'음악 정보 수정에 실패했습니다~'});
