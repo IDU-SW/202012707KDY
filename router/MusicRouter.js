@@ -5,8 +5,8 @@ const musics = require('../model/MusicModel');
 router.get('/musics', showMusicList);
 router.get('/musics/:musicId', showMusicDetail);
 router.post('/musics', addMusic);
-router.post('/musics/:musicId', delMusic);
-router.post('/musics/edit/:musicId', editMusic);
+router.delete('/musics/:musicId', delMusic);
+router.put('/musics/:musicId', editMusic);
 
 module.exports = router;
 
