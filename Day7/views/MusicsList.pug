@@ -1,0 +1,15 @@
+html
+   head
+      meta(charset="UTF-8")
+      title Dayoung's Music List
+   body
+      h1= "📃"+title+"📃"
+      h2= "현재 총 : " + count + "곡🎵"
+      h3= "제목을 클릭하면 상세 페이지로 이동합니다🎶"
+      ul
+         for item in list
+            li
+               a(href='/musics/'+item.id)
+                h3=item.title
+         button(type='button')
+          a(href='/music/add') 음악 추가하기
