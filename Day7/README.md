@@ -78,7 +78,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![상세](C:\Users\ekdud\OneDrive\바탕 화면\상세.png)
+![상세](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%83%81%EC%84%B8.png?raw=true)
 
 --------------
 
