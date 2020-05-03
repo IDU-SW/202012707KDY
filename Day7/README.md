@@ -63,7 +63,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![목록](C:\Users\ekdud\OneDrive\바탕 화면\목록.png)
+![목록](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EB%AA%A9%EB%A1%9D.png?raw=true)
 
 --------------
 
@@ -93,7 +93,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![추가폼](C:\Users\ekdud\OneDrive\바탕 화면\추가폼.png)
+![추가폼](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%B6%94%EA%B0%80%ED%8F%BC.png?raw=true)
 
 --------------
 
@@ -108,7 +108,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![추가폼](C:\Users\ekdud\OneDrive\바탕 화면\추가완료.png)
+![추가폼](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%B6%94%EA%B0%80%EC%99%84%EB%A3%8C.png?raw=true)
 
 --------------
 
@@ -123,7 +123,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![삭제](C:\Users\ekdud\OneDrive\바탕 화면\삭제.png)
+![삭제](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%82%AD%EC%A0%9C.png?raw=true)
 
 --------------
 
@@ -138,7 +138,7 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![수정](C:\Users\ekdud\OneDrive\바탕 화면\수정폼.png)
+![수정](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%88%98%EC%A0%95%ED%8F%BC.png?raw=true)
 
 --------------
 
@@ -155,4 +155,4 @@ DAY7. 프론트엔드를 추가한 웹 서비스 작성하기
 
 #### 응답
 
-![수정](C:\Users\ekdud\OneDrive\바탕 화면\수정.png)
+![수정](https://github.com/IDU-SW/202012707KDY/blob/master/Day7/image/%EC%88%98%EC%A0%95.png?raw=true)
