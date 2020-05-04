@@ -1,0 +1,19 @@
+html
+    head
+        meta(charset="UTF-8")
+        title Dayoung's Music List
+    body
+        h2
+         a(href='/musics') 📃음악 목록📃
+        h1= title+"🔧"
+        form(action='/musics/'+view.id+'?_method=PUT' method='post')
+            h2 제목 
+                input(type="text" name="title" id="title" value=view.title)
+            h2 가수 
+                input(type="text" name="artist" id="artist" value=view.artist)
+            h2 장르 
+                input(type="text" name="genre" id="genre" value=view.genre)
+            h2 발매일 
+                input(type="text" name="date" id="date" value=view.date)
+            h2
+                input(type="submit" value="저장하기")
