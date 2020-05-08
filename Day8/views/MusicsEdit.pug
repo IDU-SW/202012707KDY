@@ -6,7 +6,7 @@ html
         h2
          a(href='/musics') 📃음악 목록📃
         h1= title+"🔧"
-        form(action='/musics/'+view.id+'?_method=PUT' method='post')
+        form(action='/musics/'+view.music_id+'?_method=PUT' method='post')
             h2 제목 
                 input(type="text" name="title" id="title" value=view.title)
             h2 가수 
