@@ -10,6 +10,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json({}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+app.use(express.static('views'));
 
 const musicRouter = require('./router/MusicRouter');
 app.use(musicRouter);
