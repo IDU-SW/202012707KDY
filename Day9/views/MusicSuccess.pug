@@ -1,0 +1,17 @@
+html
+   head
+      meta(charset="UTF-8")
+      title Dayoung's Music List
+   body
+      h2
+       a(href='/musics') 📃음악 목록📃
+      h1= "📖"+title+"📖"
+      ul
+        li
+            h3= "제목 : " + view.title
+        li
+            h3= "가수 : " + view.artist
+        li
+            h3= "장르 : " + view.genre
+        li
+            h3= "발매일 : " + view.date
