@@ -15,18 +15,17 @@ module.exports = router;
 // 전체 목록 보기
 async function showMusicList(req, res) {
     const musicList = await musics.getMusicList();
-    //const result = { data:musicList, count:musicList.length };
+    const result = { data:musicList, count:musicList.length };
     res.render('MusicsList', {title:"음악 목록",  list:musicList, count:musicList.length });
 }
 
 // 상세 보기
 async function showMusicDetail(req, res) {
     try {
-        // 음악 상세 정보 Id
         const musicId = req.params.musicId;
-        //console.log('상세히 볼 음악 번호', musicId);
         const info = await musics.getMusicDetail(musicId);
-        res.render('MusicsDetail', {title:"음악 상세", view:info});
+        console.log(info.MusicInfo.dataValues);
+        res.render('MusicsDetail', {title:"음악 상세", view:info, v_info:info.MusicInfo.dataValues});
     }
     catch ( error ) {
         console.log('Can not find, 404');
@@ -51,9 +50,10 @@ async function addMusic(req, res) {
     
     const genre = req.body.genre;
     const date = req.body.date;
+    const video_link = req.body.video_link;
 
     try {
-        const result = await musics.addMusic(title, artist, genre, date);
+        const result = await musics.addMusic(title, artist, genre, date, video_link);
         res.render('MusicSuccess', {title:"음악 추가 완료 ^3^", view: result});
     }
     catch (error) {
@@ -65,7 +65,6 @@ async function addMusic(req, res) {
 async function delMusic(req, res) {
     try {
         const musicId = req.params.musicId; // id 가져오기
-        //console.log('삭제할 음악 번호', musicId); // console에 id찍어주기
         const result = await musics.delMusic(musicId);
         res.render('Success', {title:"노래 ["+result.title+"]의 정보가 삭제되었습니다."});
     }
@@ -77,11 +76,9 @@ async function delMusic(req, res) {
 // 수정 폼
 async function editMusicForm(req, res) {
     try {
-        // 음악 상세 정보 Id
         const musicId = req.params.musicId;
-        //console.log('수정할 음악 번호', musicId);
         const info = await musics.getMusicDetail(musicId);
-        res.render('MusicsEdit', {title:"음악 수정", view:info});
+        res.render('MusicsEdit', {title:"음악 수정", view:info, v_info:info.MusicInfo.dataValues});
     }
     catch ( error ) {
         console.log('Can not find, 404');
@@ -93,8 +90,6 @@ async function editMusicForm(req, res) {
 async function editMusic(req, res) {
     try {
         const musicId = req.params.musicId; // id 가져오기
-        //console.log('수정할 음악 번호', musicId); // console에 id찍어주기
-
         const title = req.body.title;
         const artist = req.body.artist;
 
@@ -105,7 +100,9 @@ async function editMusic(req, res) {
         
         const genre = req.body.genre;
         const date = req.body.date;
-        const result = await musics.editMusic(musicId, title, artist, genre, date);
+        const video_link = req.body.video_link;
+        const result = await musics.editMusic(musicId, title, artist, genre, date, video_link);
+        result.video_link = result.MusicInfo.dataValues.video_link;
         res.render('MusicSuccess', {title:"음악 수정완료 ^3^", view: result});
     }
     catch ( error ) {

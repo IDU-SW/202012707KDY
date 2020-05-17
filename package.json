@@ -18,8 +18,10 @@
   "homepage": "https://github.com/IDU-SW/202012707KDY#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "method-override": "^3.0.0",
     "mysql2": "^2.1.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.9"
   }
 }
