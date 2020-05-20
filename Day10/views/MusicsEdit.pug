@@ -1,0 +1,21 @@
+html
+    head
+        meta(charset="UTF-8")
+        title Dayoung's Music List
+    body
+        h2
+         a(href='/musics') 📃음악 목록📃
+        h1= title+"🔧"
+        form(action='/musics/'+view.music_id+'?_method=PUT' method='post')
+            h2 제목 &nbsp
+                input(type="text" name="title" id="title" style="text-align:center; width:200px; height:30px" value=view.title)
+            h2 가수 &nbsp
+                input(type="text" name="artist" id="artist" style="text-align:center; width:200px; height:30px" value=view.artist)
+            h2 장르 &nbsp
+                input(type="text" name="genre" id="genre" style="text-align:center; width:200px; height:30px" value=view.genre)
+            h2 발매일 &nbsp
+                input(type="text" name="date" id="date" style="text-align:center; width:200px; height:30px" value=view.date)
+            h2 뮤직비디오 링크 &nbsp 
+                input(type="text" name="video_link" id="video_link" style="text-align:center; width:400px; height:30px" value=v_info.video_link)
+            h2
+                input(type="submit" value="저장하기" style="color:#ffffff;background-color:#e77582;border:0;text-align:center; width:100px; height:40px")
