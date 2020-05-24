@@ -24,12 +24,11 @@ async function showMusicDetail(req, res) {
     try {
         const musicId = req.params.musicId;
         const info = await musics.getMusicDetail(musicId);
-        console.log(info.MusicInfo.dataValues);
-        res.render('MusicsDetail', {title:"음악 상세", view:info, v_info:info.MusicInfo.dataValues});
+        res.render('MusicsDetail', {title:"음악 상세", view:info});
     }
     catch ( error ) {
         console.log('Can not find, 404');
-        res.status(error.code).send({msg:"상세보기 실패,,,,"});
+        res.status(error.code).send({msg:"상세보기 실패했어요.."});
     }
 }
 
@@ -50,10 +49,9 @@ async function addMusic(req, res) {
     
     const genre = req.body.genre;
     const date = req.body.date;
-    const video_link = req.body.video_link;
 
     try {
-        const result = await musics.addMusic(title, artist, genre, date, video_link);
+        const result = await musics.addMusic(title, artist, genre, date);
         res.render('MusicSuccess', {title:"음악 추가 완료 ^3^", view: result});
     }
     catch (error) {
@@ -78,7 +76,7 @@ async function editMusicForm(req, res) {
     try {
         const musicId = req.params.musicId;
         const info = await musics.getMusicDetail(musicId);
-        res.render('MusicsEdit', {title:"음악 수정", view:info, v_info:info.MusicInfo.dataValues});
+        res.render('MusicsEdit', {title:"음악 수정", view:info});
     }
     catch ( error ) {
         console.log('Can not find, 404');
@@ -100,9 +98,7 @@ async function editMusic(req, res) {
         
         const genre = req.body.genre;
         const date = req.body.date;
-        const video_link = req.body.video_link;
-        const result = await musics.editMusic(musicId, title, artist, genre, date, video_link);
-        result.video_link = result.MusicInfo.dataValues.video_link;
+        const result = await musics.editMusic(musicId, title, artist, genre, date);
         res.render('MusicSuccess', {title:"음악 수정완료 ^3^", view: result});
     }
     catch ( error ) {

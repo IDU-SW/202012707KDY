@@ -11,7 +11,7 @@ html
       ul
          for item in list
             li
-               a(href='/musics/'+item.music_id)
+               a(href='/musics/'+item._id)
                 h3=item.title + " [" + item.artist + "]"
          div.button
             a(href='/music/add') 음악 추가하기

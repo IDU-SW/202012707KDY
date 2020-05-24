@@ -12,9 +12,7 @@ html
       h3= "가수 : " + view.artist
       h3= "장르 : " + view.genre
       h3= "발매일 : " + view.date
-      button(type='button' style="background-color:#fac3cc;border:0;text-align:center; width:200px; height:40px")
-         a(href=v_info.video_link) 뮤직비디오 보러가기
-      form(action='/musics/'+ view.music_id+'?_method=DELETE' method='post')
+      form(action='/musics/'+ view._id+'?_method=DELETE' method='post')
         button(type='button' style="color:#ffffff;background-color:#e77582;border:0;text-align:center; width:100px; height:40px")
-            a(href='/musics/edit/'+ view.music_id) 수정
+            a(href='/musics/edit/'+ view._id) 수정
         input(type="submit" value="삭제" style="color:#ffffff;background-color:#e74b5d;border:0;text-align:center; width:100px; height:40px")

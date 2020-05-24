@@ -1,56 +1,17 @@
+const MusicCon = require('./connect');
+
 const fs = require('fs');
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('musics', 'dev', 'cometrue', {
-    dialect: 'mysql', host :'127.0.0.1'
-})
-
-class MusicList extends Sequelize.Model {}
-MusicList.init({
-    music_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    title: Sequelize.STRING,
-    artist: Sequelize.STRING,
-    genre: Sequelize.STRING,
-    date: Sequelize.STRING
-}, {tableName: 'music_list', sequelize})
-
-class MusicInfo extends Sequelize.Model {}
-MusicInfo.init({
-    info_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    list_music_id: Sequelize.INTEGER,
-    video_link: Sequelize.STRING
-}, {tableName: 'music_info', sequelize})
 
 class Music {
     constructor() {
         try{
-            this.prepareTable();
+            this.jsonToDB();
         } catch (err){
-            console.error(err);
-        }
-    }
-
-    async prepareTable() {
-        try {
-            await MusicList.sync({force:true});
-            await MusicInfo.sync({force:true});
-
-            MusicList.hasOne(MusicInfo, {
-                foreignKey:'list_music_id'
-            })
-            await this.jsonToDB();
-        }catch (err){
             console.log('musicList 준비 실패 :', err);
         }
     }
 
+    // 초기 데이터 입력
     async jsonToDB() {
         const data = fs.readFileSync('./model/data.json');
         const musics = JSON.parse(data);
@@ -60,71 +21,55 @@ class Music {
     }
 
     async musicdata(music){
-        try{
-            const mret = await MusicList.create({
-                title: music.title,
-                artist: music.artist,
-                genre: music.genre,
-                date: music.date,
-            }, {logging: false});
-
-            const iret = await MusicInfo.create({
-                video_link: music.video_link
-            }, {logging: false});
-
-            const newData = mret.dataValues;
-
-            await mret.setMusicInfo(iret);
-
-            console.log(newData);
-            console.log('Create success');
-        } catch (err) {
-            console.log('ERROR : ', err);
-        }
-    }
-
-    async getMusicList() {
-        let rtn;
-        await MusicList.findAll({include:[{model:MusicInfo}]})
-        .then( results => {
-            for (var item of results) {
-                console.log('id:', item.music_id, ', title:', item.title, ', artist:', item.artist, ', genre:', item.genre, ', date:', item.date);
-            }
-            rtn = results;
-        })
-        .catch( error => {
-            console.error('Error :', error);
-        });
-        return rtn;
-    }
-
-    // 상세보기
-    async getMusicDetail(musicId) {
         try {
-            let results = await MusicList.findAll({where: {music_id:musicId}, include:[{model:MusicInfo}]});
-            for (var item of results) {
-                console.log('id : ', item.music_id, ' title : ', item.title);
-            }
-            if ( results ) {
-                return results[0];
-            }
-            else {
-                console.log('no data');
-            }
+            const result = await MusicCon.create({ title: music.title, artist: music.artist, genre: music.genre, date: music.date });
+            console.log('음악 추가 성공! :', result);
         }
-        catch (error) {
-            console.log('Error : ', error);
+        catch ( error ) {
+            console.log('Creation Error :', error);
         }
     }
+    // 초기 데이터 입력 끝 
 
-    // 추가
-    async addMusic(title, artist, genre, date, video_link) {
-        let newMusic = {title, artist, genre, date, video_link};
+    // 음악 목록 보기
+    async getMusicList() {
+        let value;
+        await MusicCon.find({})
+        .then (docs => {
+            for(var item of docs) {
+                console.log('음악 목록보기] title:', item.title, ', artist:', item.artist, ', genre:', item.genre, ', date:', item.date);
+            }
+            value = docs;
+        })
+        .catch (error => {
+            console.error('ERROR : ', error);
+        });
+        return value;
+    }
+
+    // 음악 상세보기
+    async getMusicDetail(musicId) {
+        let value;
+        await MusicCon.find({_id: musicId })
+        .then (docs => {
+            for(var item of docs){
+                console.log("선택된 노래 정보 : " + item.title);
+            }
+            value = docs;
+        })
+        .catch (error => {
+            console.error('ERROR : ', error);
+        });
+        return value[0];
+    }
+
+    // 음악 추가
+    async addMusic(title, artist, genre, date) {
+        let newMusic = {title, artist, genre, date};
         console.log(newMusic);
         try {
-            const newData = await this.musicdata(newMusic);
-            console.log(newData);
-            console.log('Create success');
+            await this.musicdata(newMusic);
+            console.log('음악 추가 성공!');
             return newMusic;
         }
         catch (error) {
@@ -132,52 +77,50 @@ class Music {
         }
     }
 
-    // 삭제
+    // 음악 삭제
     async delMusic(musicId) {
-        try {
-            let results = await MusicList.findAll({where: {music_id:musicId}, include:[{model:MusicInfo}]});
+        let value;
+        await MusicCon.find({_id: musicId }).then (docs => {
+            for(var item of docs){
+                console.log(item.title + ' 삭제 처리중..');
+            }
+            value = docs;
+        })
+        .catch (error => {
+            console.error('ERROR : ', error);
+        });
 
-            let result = await MusicList.destroy({ where:{music_id:musicId}, include:[{model:MusicInfo}]});
-            
-            for (var item of results) {
-                console.log('Remove item id : ', item.music_id, ', title : ', item.title);
+        try {
+            const doc = await MusicCon.findOne({ _id: musicId });
+            if ( ! doc ) {
+                console.log('정보를 찾을 수 없습니다.'+_id);
+                return;
             }
-            if ( results ) {
-                console.log('Remove success :', result);
-                return results[0];
-            }
-            else {
-                console.log('no data');
-            }
-        }
-        catch (error) {
-            console.log('Remove Error :', error);
+            await doc.remove();
+            console.log('['+ value[0].title +'] 의 정보가 삭제되었습니다.');
+            return value[0];
+        } catch (error) {
+            console.error('Error :', error);        
         }
     }
     
-    // 수정
-    async editMusic(musicId, title, artist, genre, date, video_link) {
+    // 음악 수정
+    async editMusic(musicId, title, artist, genre, date) {
         try {
-            let music = await MusicList.findByPk(musicId);
-            music.title = title;
-            music.artist = artist;
-            music.genre = genre;
-            music.date = date;
-            let ret = await music.save();
-
-            let music_v = await MusicInfo.findByPk(musicId);
-            music_v.video_link = video_link;
-            let ret_v = await music_v.save();
-
-            let changedMusic = ret.dataValues;
-            let changedMusic_v = ret_v.dataValues;
-            console.log('ret :',changedMusic, "ret_v: ", changedMusic_v);
-
-            let results = await MusicList.findAll({where: {music_id:musicId}, include:[{model:MusicInfo}]});
-            return results[0];
-        }
-        catch (error) {
-            console.log('Error :', error);
+            const doc = await MusicCon.findOne({ _id: musicId });
+            if ( ! doc ) {
+                console.log('정보를 찾을 수 없습니다.'+_id);
+                return;
+            }
+            doc.title = title;
+            doc.artist = artist;
+            doc.genre = genre;
+            doc.date = date;
+            await doc.save();
+            console.log('['+ doc.title +'] 의 정보가 수정되었습니다.');
+            return doc;
+        } catch (error) {
+            console.error('Error :', error);        
         }
     }
 }
