@@ -16,10 +16,6 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 ##### - npm i method-override
 
-##### - npm i mysql2
-
-##### - npm i sequelize
-
 ##### - npm i mongoose
 
 ### 🎈CONTENT🎈
@@ -61,7 +57,7 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![목록](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EB%AA%A9%EB%A1%9D.png?raw=true)
+![목록](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EB%AA%A9%EB%A1%9D.png?raw=true)
 
 --------------
 
@@ -76,7 +72,7 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![상세](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%83%81%EC%84%B8.png?raw=true)
+![상세](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%83%81%EC%84%B8.png?raw=true)
 
 --------------
 
@@ -91,7 +87,7 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![추가폼](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%B6%94%EA%B0%80%ED%8F%BC.png?raw=true)
+![추가폼](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%B6%94%EA%B0%80%ED%8F%BC.png?raw=true)
 
 --------------
 
@@ -106,22 +102,7 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![추가폼](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%B6%94%EA%B0%80%EC%99%84%EB%A3%8C.png?raw=true)
-
---------------
-
-### 🗑음악 정보 삭제
-
-#### 요청
-
-| 업무        | 음악 정보 삭제 |
-| ----------- | -------------- |
-| URL         | /musics/ID     |
-| 요청 메소드 | DELETE         |
-
-#### 응답
-
-![삭제](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%82%AD%EC%A0%9C.png?raw=true)
+![추가폼](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%B6%94%EA%B0%80%EC%99%84%EB%A3%8C.png?raw=true)
 
 --------------
 
@@ -136,7 +117,7 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![수정](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%88%98%EC%A0%95%ED%8F%BC.png?raw=true)
+![수정](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%88%98%EC%A0%95%ED%8F%BC.png?raw=true)
 
 --------------
 
@@ -153,5 +134,19 @@ DAY10. 프로젝트에 MongoDB 적용하기
 
 #### 응답
 
-![수정](https://github.com/IDU-SW/202012707KDY/blob/master/Day9/image/%EC%88%98%EC%A0%95.png?raw=true)
+![수정](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%88%98%EC%A0%95.png?raw=true)
 
+--------------
+
+### 🗑음악 정보 삭제
+
+#### 요청
+
+| 업무        | 음악 정보 삭제 |
+| ----------- | -------------- |
+| URL         | /musics/ID     |
+| 요청 메소드 | DELETE         |
+
+#### 응답
+
+![삭제](https://github.com/IDU-SW/202012707KDY/blob/mongoDB/Day10/image/%EC%82%AD%EC%A0%9C.png?raw=true)
