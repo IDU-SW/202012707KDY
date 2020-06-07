@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const router = express.Router();
 const musics = require('../model/MusicModel');
 
@@ -17,23 +18,23 @@ module.exports = router;
 
 // 전체 목록 보기
 async function showMusicList(req, res) {
-        const musicList = await musics.getMusicList();
-        const result = { data:musicList, count:musicList.length };
-        res.render('MusicsList', {title:"음악 목록",  list:musicList, count:musicList.length });
+    const musicList = await musics.getMusicList();
+    const result = { data:musicList, count:musicList.length };
+    res.render('MusicsList', {title:"음악 목록",  list:musicList, count:musicList.length });
 }
 
 // 상세 보기
 async function showMusicDetail(req, res) {
-        try {
-            const musicId = req.params.musicId;
-            const info = await musics.getMusicDetail(musicId);
-            console.log(info.MusicInfo.dataValues);
-            res.render('MusicsDetail', {title:"음악 상세", view:info, v_info:info.MusicInfo.dataValues});
-        }
-        catch ( error ) {
-            console.log('Can not find, 404');
-            res.status(error.code).send({msg:"상세보기 실패,,,,"});
-        }
+    try {
+        const musicId = req.params.musicId;
+        const info = await musics.getMusicDetail(musicId);
+        console.log(info.MusicInfo.dataValues);
+        res.render('MusicsDetail', {title:"음악 상세", view:info, v_info:info.MusicInfo.dataValues});
+    }
+    catch ( error ) {
+        console.log('Can not find, 404');
+        res.status(error.code).send({msg:"상세보기 실패,,,,"});
+    }
 }
 
 // 추가 폼
@@ -112,36 +113,29 @@ async function editMusicForm(req, res) {
 
 // 수정
 async function editMusic(req, res) {
-    const id = req.session.userid;
-    
-    if(id){
-        try {
-            const musicId = req.params.musicId; // id 가져오기
-            const title = req.body.title;
-            const artist = req.body.artist;
+    try {
+        const musicId = req.params.musicId; // id 가져오기
+        const title = req.body.title;
+        const artist = req.body.artist;
 
-            if (!title || !artist) {
-                res.status(400).send({error:'title 과 artist는 필수값입니다.'});
-                return;
-            }
-            
-            const genre = req.body.genre;
-            const date = req.body.date;
-            const video_link = req.body.video_link;
-            const result = await musics.editMusic(musicId, title, artist, genre, date, video_link);
-            result.video_link = result.MusicInfo.dataValues.video_link;
-            res.render('MusicSuccess', {title:"음악 수정완료 ^3^", view: result});
+        if (!title || !artist) {
+            res.status(400).send({error:'title 과 artist는 필수값입니다.'});
+            return;
         }
-        catch ( error ) {
-            res.status(400).send({error:'음악 정보 수정에 실패했습니다~'});
-        }
+        
+        const genre = req.body.genre;
+        const date = req.body.date;
+        const video_link = req.body.video_link;
+        const result = await musics.editMusic(musicId, title, artist, genre, date, video_link);
+        result.video_link = result.MusicInfo.dataValues.video_link;
+        res.render('MusicSuccess', {title:"음악 수정완료 ^3^", view: result});
     }
-    else {
-        res.render('login_page');
+    catch ( error ) {
+        res.status(400).send({error:'음악 정보 수정에 실패했습니다~'});
     }
 }
 
-// 메인 로그인
+// 로그인 메인
 async function login(req, res) {
     res.render('login_page');
 }
