@@ -1,0 +1,22 @@
+html
+   head
+      meta(charset="UTF-8")
+      title Dayoung's Music List
+      link(rel="stylesheet" href="./button.css" type="text/css")
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+           
+   body
+      h1= "📃"+title+"📃"
+      h2= "현재 총 : " + count + "곡🎵"
+      h3= "제목을 클릭하면 상세 페이지로 이동합니다🎶"
+      ul
+         for item in list
+            li
+               a(href='/musics/'+item.music_id)
+                h3=item.title + " [" + item.artist + "]"
+         div.button
+            a(href='/music/add') 음악 추가하기
+            div.eff
+         div.button
+            a(href='/login') 로그인 / 로그아웃
+            div.eff

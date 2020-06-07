@@ -1,0 +1,70 @@
+html
+   head
+      meta(charset="UTF-8")
+      title Dayoung's Music List
+      link(rel="stylesheet" href="./button.css" type="text/css")
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+           
+   body
+      div
+         h1="LOGIN"
+         p="로그인 후 음악을 추가, 수정할 수 있습니다."
+         input(type="text" name="uid" id="uid" placeholder="USER ID" style="width:150px; height:30px; margin-bottom:20px; margin-left:25px; margin-right:10px;") 
+         input(type="password" name="pwd" id="pwd" placeholder="USER PASSWORD" style="width:150px; height:30px; margin-bottom:20px;")
+         span(id="login-result" style="color:red")
+         div
+            div.button(onclick=`login()` value="LOGIN")
+                a() 로그인👍🏻
+                div.eff
+            div.button(onclick=`logout()` value="LOGOUT")
+                a() 로그아웃👋🏻
+                div.eff
+            div.button
+                a(href='/musics') 목록보기🎵
+                div.eff
+
+      script.
+         $(document).ready(function(){
+            $("#login-result").text(" 로그인 해주세요! :)");
+         });
+      script.
+         function login() {
+            var id = $("#uid").val();
+            var pw = $("#pwd").val();
+
+            $.ajax({
+               url: '/loginChk',
+               type: 'post',
+               data: `id=${id}&pw=${pw}`
+            }).done((data) => {
+               // 로그인 성공시 창 이동
+               alert('로그인에 성공하였습니다. 음악 목록으로 이동합니다.🎵');
+               window.location.href = "http://localhost:3000/musics";
+            }).fail((err) => {
+               // 로그인 실패            
+               $("#login-result").text(' 아이디 또는 비밀번호가 맞지않습니다.');
+            });
+         }
+
+      script.
+         function logout() {
+            $.ajax({
+               url: '/logoutChk',
+               type: 'delete'
+            }).done((data) => {
+               // 로그아웃 성공
+               alert('로그아웃 되었습니다.');
+               $("#uid").val("");
+               $("#pwd").val("");
+               $("#login-result").text(" 로그인 해주세요! :)");
+            }).fail((err) => {
+               // 로그아웃 실패        
+               $("#login-result").text(" 로그아웃 실패");
+            });
+         }
+
+      script.
+         function list() {
+            window.location.href = "http://localhost:3000/musics";
+         }  
+   
