@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('s3', 'admin', 'kimevery0', {
+const sequelize = new Sequelize('musics', 'admin', 'kimevery0', {
     dialect: 'mysql', host :'idu-aws-mysql.ci0o8f9dum5o.ap-northeast-2.rds.amazonaws.com'
 })
 
