@@ -1,0 +1,37 @@
+html
+   head
+      meta(charset="UTF-8")
+      title Dayoung's Music List
+      link(rel="stylesheet" href="./button.css" type="text/css")
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+           
+   body
+      h1= "📃"+title+"📃"
+      h2= "현재 총 : " + count + "곡🎵"
+      h3= "🎶" + login_id + "님 반갑습니다😊 제목을 클릭하면 상세 페이지로 이동합니다🎶"
+      ul
+         for item in list
+            li
+               a(href='/musics/'+item.music_id)
+                h3=item.title + " [" + item.artist + "]"
+         div.button
+            a(href='/music/add') 음악 추가하기
+            div.eff
+         div.button(onclick=`logout()` value="LOGOUT")
+            a() 로그아웃👋🏻
+            div.eff
+
+      script.
+         function logout() {
+            $.ajax({
+               url: '/logoutChk',
+               type: 'delete'
+            }).done((data) => {
+               // 로그아웃 성공
+               alert('로그아웃 되었습니다.');
+               window.location.href = "http://15.165.74.127:3000/musics";
+            }).fail((err) => {
+               // 로그아웃 실패        
+               $("#login-result").text(" 로그아웃 실패");
+            });
+         }
