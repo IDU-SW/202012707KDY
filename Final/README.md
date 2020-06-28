@@ -233,9 +233,13 @@ Final. 자신의 서비스 만들고 서비스하기
 
 ![로그인창](https://github.com/IDU-SW/202012707KDY/blob/Final/Final/image/%EB%A1%9C%EA%B7%B8%EC%9D%B8%EC%B0%BD.png?raw=true)
 
-##### - 로그인
+##### - 로그인 성공
 
 ![로그인_성공](https://github.com/IDU-SW/202012707KDY/blob/Final/Final/image/%EB%A1%9C%EA%B7%B8%EC%9D%B8_%EC%84%B1%EA%B3%B5.png?raw=true)
+
+##### - 로그인 실패
+
+![로그인_성공](https://github.com/IDU-SW/202012707KDY/blob/Final/Final/image/%EB%A1%9C%EA%B7%B8%EC%9D%B8_%EC%8B%A4%ED%8C%A8.png?raw=true)
 
 ##### - 로그아웃
 
